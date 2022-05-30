@@ -18,7 +18,11 @@ Powerrevshell.py comes with several function accesibbile via the "menu" option.
 
 ### get - put
 
-The get and put functionality
+The get and put functionality are build using TCPSocket to transfer files between the machines, to prevent data loss, on each message, are sent support text and md5sum to know if the actual file option are sent correctly.
+
+```
+get <file.txt> / put <file.txt>
+```
 
 ### smb-get
 ### down-file
