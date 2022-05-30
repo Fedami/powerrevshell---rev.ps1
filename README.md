@@ -31,7 +31,7 @@ The
 
 ## Rev.ps1
 
-Rev.ps1 is the powershell script to connect back to us.
+Rev.ps1 is the powershell script to connect back to us.\
 To start the reverse shell run the following code on the target machine.
 
 ```
