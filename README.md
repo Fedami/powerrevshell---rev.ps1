@@ -20,6 +20,18 @@ To simply install it:
 
 ![powerrevshell-start](https://user-images.githubusercontent.com/82824055/170969038-c81c54a0-721b-44f5-835b-86d11840211f.png)
 
+# optional arguments:
+  -h, --help            show this help message and exit
+  -f smb folder for transfer and execute funciontality
+                        Enter folder name [Default: root]
+  -i attacker ip        Enter Attacker IP [Default: 192.168.0.114]
+  -p port               listener port for reverse shell [Default: 9001]
+  -wp webport           listener port for http server [Default: 8000]
+  -sp smbport           listener port for smb server [Default: 445]
+  -http                 Start http web server [Default: 8000]
+  -smb                  Start smb web server [Default: 445]
+  -k                    If port are being used it kill the process to force the exexcution.
+
 Powerrevshell.py comes with several function accesibbile via the "menu" option.
 
 ### get - put
