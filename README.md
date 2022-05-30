@@ -30,7 +30,7 @@ To simply install it:
   -sp smbport       &emsp;&ensp;     listener port for smb server [Default: 445]\
   -http             &emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;    Start http web server [Default: 8000]\
   -smb              &emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;    Start smb web server [Default: 445]\
-  -k                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;    If port are being used it kill the process to force the exexcution.\
+  -k                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;    If ports are being used it will kill the process to force the exexcution.\
 
 # Functionality
 
