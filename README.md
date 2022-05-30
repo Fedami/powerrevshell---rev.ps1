@@ -59,7 +59,7 @@ load <file.ps1>
 
 ### amsi-bypass
 
-The amsi-bypass functionality will try to bypass AMSI on the current shell by using the Matt Graeber amsi bypass method obfusced with two bytes array.
+The amsi-bypass functionality will try to bypass AMSI on the current shell by using the Matt Graeber amsi bypass method obfuscated with two bytes array.
 
 ```
 amsi-bypass
