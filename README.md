@@ -82,7 +82,18 @@ The paylaod must be a cs file.
 payload <payload.cs>
 ```
 
+For the socks functionality this work [PowerProxy by get-get-get-get](https://github.com/get-get-get-get/PowerProxy) is being used.
+
 ### socks-start
+
+Socks-start start a socks proxy to your machine.
+
+```
+socks-start <L-PORT> <P-PORT>
+```
+
+You can also omit <L-PORT> <P-PORT>, by default L-PORT is 8080 and P-PORT is 1080.
+
 ### socks-stop
 ### socks
 ### close
