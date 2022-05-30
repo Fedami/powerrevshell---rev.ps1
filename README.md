@@ -17,7 +17,9 @@ It is written with Python and Powershell. To simply install it:
 Powerrevshell.py comes with several function accesibbile via the "menu" option.
 
 ### get - put
-The 
+
+The get and put functionality
+
 ### smb-get
 ### down-file
 ### load
