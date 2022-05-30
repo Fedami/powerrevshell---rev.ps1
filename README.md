@@ -1,14 +1,15 @@
 # Introduction
 
-A small reverse shell project that i build during my university intership.
-
+A small reverse shell project that i build during my university intership.\
 It is written with Python and Powershell. To simply install it:
 
 1.  Clone this repo
-2.  ```
+2.  Run the following code to install all the requirements
+    ```
     pip install -r requirements.txt
     ```
-3.  ```
+3.  Run the following code to make the .py file executable or simply run it with python
+    ```
     chmod +x powerrevshell.py or python3 powerrevshell.py
     ```
 ## Powerrevshell
