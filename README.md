@@ -46,7 +46,7 @@ get <file.txt> / put <file.txt>
 
 ### smb-get
 
-The smb-get functionality simply transfer a file using the Copy-Item cmdlet to the smbserver started suing impacket-smbserver.\
+The smb-get functionality simply transfer a file using the Copy-Item cmdlet to the smbserver started using impacket-smbserver.\
 If you didn't start the program with the -smb switch or started youreself (impacket-smbserver) the command will fail.
 
 ```
