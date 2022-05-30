@@ -92,12 +92,12 @@ Socks-start start a socks proxy to your machine.
 socks-start <L-PORT> <P-PORT>
 ```
 
-You can also omit <L-PORT> <P-PORT>, by default L-PORT is 8080 and P-PORT is 1080.
+You can also omit <L-PORT> and <P-Port>, by default L-PORT is 8080 and P-PORT is 1080
 
 ### socks-stop
+
 ### socks
 ### close
-
 
 ## Rev.ps1
 
