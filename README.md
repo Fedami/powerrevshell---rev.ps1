@@ -1,10 +1,17 @@
-# Project
+# Introduction
 
 A small reverse shell project that i build during my university intership.
 
-It is written with Python and Powershell.
+It is written with Python and Powershell. To simply install it:
+
+1. Clone this repo
+2. ```
+pip install
+```
 
 ## Powerrevshell
+
+Powerrevshell.py 
 
 ## Rev.ps1
 
