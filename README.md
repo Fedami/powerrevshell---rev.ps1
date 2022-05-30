@@ -34,7 +34,7 @@ To simply install it:
 
 # Functionality
 
-Powerrevshell.py comes with several function accesibbile via the "menu" option.
+Powerrevshell.py comes with several function accessible via the "menu" option.
 
 ### get - put
 
