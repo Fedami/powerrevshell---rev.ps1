@@ -3,8 +3,11 @@
 A small reverse shell project that i build during my university intership.\
 It is written with Python and Powershell. To simply install it:
 
-1.  Clone this repo
-2.  Run the following code to install all the requirements
+1.  Clone this repo with the following code
+    ```
+    git clone https://github.com/Fedami/powerrevshell---rev.ps1
+    ```
+3.  Run the following code to install all the requirements
     ```
     pip install -r requirements.txt
     ```
