@@ -91,13 +91,35 @@ Socks-start start a socks proxy to your machine.
 ```
 socks-start <L-PORT> <P-PORT>
 ```
+You can also omit L-PORT and P-Port, by default L-PORT is 8080 and P-PORT is 1080.
 
-You can also omit <L-PORT> and <P-Port>, by default L-PORT is 8080 and P-PORT is 1080
+```
+socks-start
+```
 
 ### socks-stop
 
+Socks-stop will stop any running socks on the target machine that was started before.
+
+```
+socks-stop
+```
+
 ### socks
+
+Socks will list if there is a running socks proxy.
+
+```
+socks
+```
+
 ### close
+
+Close will terminate the session by closing the powershell process, if the command exclude was used it will delete the exclusion also if it was started a socks proxy it will kill it before closing the session.
+
+```
+close
+```
 
 ## Rev.ps1
 
