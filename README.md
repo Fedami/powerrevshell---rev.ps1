@@ -5,9 +5,12 @@ A small reverse shell project that i build during my university intership.
 It is written with Python and Powershell. To simply install it:
 
 1. Clone this repo
-2. ```
-pip install
-```
+2.  ```
+    pip install -r requirements.txt
+    ```
+3.  ```
+    chmod +x powerrevshell.py or python3 powerrevshell.py
+    ```
 
 ## Powerrevshell
 
