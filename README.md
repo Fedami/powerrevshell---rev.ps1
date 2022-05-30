@@ -89,18 +89,18 @@ exclude
 
 ### payload
 
-The payload functionality will try to create a new process and inject the shell payload can be meterpreter or cobalt strike...\
-The paylaod must be a cs file.
+The payload functionality will try to create a new process and inject the shell payload that can be meterpreter or cobalt strike...\
+The payload must be a cs file.
 
 ```
 payload <payload.cs>
 ```
 
-For the socks functionality this work [PowerProxy by get-get-get-get](https://github.com/get-get-get-get/PowerProxy) is being used.
+Work used for the socks functionality: [PowerProxy by get-get-get-get](https://github.com/get-get-get-get/PowerProxy).
 
 ### socks-start
 
-Socks-start start a socks proxy to your machine.
+Socks-start start a socks proxy.
 
 ```
 socks-start <L-PORT> <P-PORT>
@@ -129,7 +129,7 @@ socks
 
 ### close
 
-Close will terminate the session by closing the powershell process, if the command exclude was used it will delete the exclusion also if it was started a socks proxy it will kill it before closing the session.
+Close will terminate the session by killing the powershell process, if the command exclude was used it will delete the exclusion policy. Also if it was started a socks proxy it will kill it before killing the session.
 
 ```
 close
