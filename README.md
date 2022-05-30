@@ -27,10 +27,44 @@ get <file.txt> / put <file.txt>
 ```
 
 ### smb-get
+
+The smb-get functionality simply transfer a file using the Copy-Item cmdlet to the smbserver started suing impacket-smbserver.\
+If you didn't start the program with the -smb switch or started youreself (impacket-smbserver) the command will fail.
+
+```
+smb-get <file.txt>
+```
+
 ### down-file
+
+The down-file functionality simply download a file from the current machine to the target machine using HTTP server with python.
+If you didn't start the program with the -http switch or started youreself (python -m http.server 8000) the command will fail.
+
+```
+down-file <file.txt>
+```
+
 ### load
+
+The down-file functionality simply load a powershell script from the current machine to the target machine using HTTP server with python.
+If you didn't start the program with the -http switch or started youreself (python -m http.server 8000) the command will fail.
+
+```
+load <file.ps1>
+```
+
 ### amsi-bypass
+
+The amsi-bypass functionality will try to bypass AMSI on the current shell by using the Matt Graeber amsi bypass method obfusced with two bytes array.
+
+```
+amsi-bypass
+```
+
 ### exclude
+
+The exlucde functionality
+
 ### payload
 ### socks-start
 ### socks-stop
