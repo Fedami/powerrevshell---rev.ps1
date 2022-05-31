@@ -2,7 +2,7 @@
 
 A small reverse shell project that i build during my university intership.\
 It is written with Python and Powershell.\
-33333333333333333333333333333333333333333
+33333333333333333333333333333333333333333 but also 7 (~^-^)~
 
 # Installation
 
