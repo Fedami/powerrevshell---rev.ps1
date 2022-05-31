@@ -36,7 +36,7 @@ To simply install it:
 
 Powerrevshell.py comes with several function accessible via the "menu" option.
 
-
+![powerrevshell-menu](https://user-images.githubusercontent.com/82824055/171123395-27647e7f-9853-43e8-adae-8ea33e231bf3.png)
 
 ### get - put
 
