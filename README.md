@@ -24,7 +24,7 @@ To simply install it:
 
 ![powerrevshell-start](https://user-images.githubusercontent.com/82824055/170969038-c81c54a0-721b-44f5-835b-86d11840211f.png)
 
-# Optional argument:
+# Optional argument
   -h, --help        &emsp;&emsp;&ensp;    show this help message and exit\
   -f &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; smb folder for transfer and execute funciontality\
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                      Enter folder name [Default: root]\
@@ -38,7 +38,7 @@ To simply install it:
 
 # Functionality
 
-Powerrevshell.py comes with several function accessible via the "menu" option.
+Powerrevshell.py comes with several function accessible via the "menu" option:
 
 ![powerrevshell-menu](https://user-images.githubusercontent.com/82824055/171123395-27647e7f-9853-43e8-adae-8ea33e231bf3.png)
 
