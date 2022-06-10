@@ -22,7 +22,7 @@ To simply install it:
     ```
 ## Powerrevshell
 
-![powerrevshell-start](https://user-images.githubusercontent.com/82824055/170969038-c81c54a0-721b-44f5-835b-86d11840211f.png)
+![powerrevshell-start-short](https://user-images.githubusercontent.com/82824055/173030103-c57222f4-fc15-4766-bd19-64d1963d9df3.png)
 
 # Optional argument
   -h, --help        &emsp;&emsp;&ensp;    show this help message and exit\
