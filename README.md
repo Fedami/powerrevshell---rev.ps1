@@ -26,7 +26,7 @@ To simply install it:
 
 # Optional argument
   -h, --help        &emsp;&emsp;&ensp;    show this help message and exit\
-  -f &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; smb folder for transfer and execute funciontality\
+  -f &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; smb folder for transfer funciontality\
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                      Enter folder name [Default: root]\
   -i local ip       &emsp;&emsp;&ensp;&nbsp;    Enter your local IP [Default: 192.168.0.114]\
   -p port           &emsp;&emsp;&emsp;&ensp;&nbsp;    listener port for reverse shell [Default: 9001]\
