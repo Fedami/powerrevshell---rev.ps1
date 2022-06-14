@@ -28,7 +28,7 @@ To simply install it:
   -h, --help        &emsp;&emsp;&ensp;    show this help message and exit\
   -f &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; smb folder for transfer and execute funciontality\
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                      Enter folder name [Default: root]\
-  -i local ip       &emsp;&emsp;&emsp;&nbsp;    Enter your local IP [Default: 192.168.0.114]\
+  -i local ip       &emsp;&emsp;&ensp;&nbsp;    Enter your local IP [Default: 192.168.0.114]\
   -p port           &emsp;&emsp;&emsp;&ensp;&nbsp;    listener port for reverse shell [Default: 9001]\
   -wp webport       &emsp;&nbsp;    listener port for http server [Default: 8000]\
   -sp smbport       &emsp;&ensp;     listener port for smb server [Default: 445]\
