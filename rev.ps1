@@ -3,7 +3,6 @@ function Send-Shell
     param(
       [string]$i,
       [int]$p,
-      [int]$wp
     )
     if(-not($i)) {
         echo ""
