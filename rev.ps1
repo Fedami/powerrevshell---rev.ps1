@@ -2,7 +2,7 @@ function Send-Shell
 {
     param(
       [string]$i,
-      [int]$p,
+      [int]$p
     )
     if(-not($i)) {
         echo ""
