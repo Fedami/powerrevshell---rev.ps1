@@ -10,6 +10,7 @@ import math
 import hashlib
 import readline
 import tempfile
+import psutil
 from pathlib import Path
 from colorama import Fore, init
 from http.server import HTTPServer, SimpleHTTPRequestHandler
@@ -418,7 +419,7 @@ def server(HOST:str,PORT:int,WEBPORT:int,CHECK_HTTP:bool,CHECK_SMB:bool,SHARE:st
             print(Fore.YELLOW + str(e))
             quit()
 
-        print(Fore.GREEN + "[+] " + Fore.RESET + f"Waiting for connection on port: {PORT}")
+        print(Fore.GREEN + "[+] " + Fore.RESET + f"Listening on {HOST}:{PORT}")
         conn, addr = s.accept()
         with conn:
             print(Fore.GREEN +"[+] " + Fore.RESET + f"Connected by {addr}")
@@ -716,15 +717,15 @@ def get_local_ip(): #grab the local ip
     finally:
         sock.close()
 
-def webServer(webport:int) -> None: #start an http web server with python to implement different functionality
-    print(Fore.GREEN + "[+] " + Fore.RESET + f"Starting Webserver on port {webport} http://0.0.0.0: {webport}")
-    httpd = HTTPServer(('0.0.0.0', webport), QuietHandler)
+def webServer(HOST:str, webport:int) -> None: #start an http web server with python to implement different functionality
+    print(Fore.GREEN + "[+] " + Fore.RESET + f"Starting Webserver on {HOST}:{webport}")
+    httpd = HTTPServer((HOST, webport), QuietHandler)
     httpd.serve_forever()
 
-def smbserver(name:str,port:int) -> None: #start smb server to implement different functionality
+def smbserver(HOST:str, name:str, port:int) -> None: #start smb server to implement different functionality
     try:
-        print(Fore.GREEN + "[+] " + Fore.RESET + f"Starting SMBServer on port {port}, ShareName: {name}.")
-        subprocess.run([f'impacket-smbserver -port {port} -smb2support kali ./{name} 1>/dev/null'],shell=True,check=True)
+        print(Fore.GREEN + "[+] " + Fore.RESET + f"Starting SMBServer on {HOST}:{port}, ShareName: {name}.")
+        subprocess.run([f'impacket-smbserver -port {port} -ip {HOST} -smb2support kali ./{name} 1>/dev/null'],shell=True,check=True)
     except:
         print(Fore.YELLOW + "[-] " + Fore.RESET + "Please Install impacket at https://github.com/SecureAuthCorp/impacket")
         quit()
@@ -756,8 +757,15 @@ def quit() -> None: #exit program
     print(Fore.RED + "[+] " + Fore.RESET + "Quitting.")
     raise SystemExit(0)
 
+def get_interface():
+    interfaces = {}
+    net_if = psutil.net_if_addrs()
+    for int_net in net_if:
+        #interfaces.append([int_net, net_if[int_net][0].address])
+        interfaces[int_net] = net_if[int_net][0].address
+    return interfaces
+
 def main() -> None: #main function with argparse
-    lip = (get_local_ip())
     parser = argparse.ArgumentParser(description='PowerRevShell')
     parser.add_argument('-f',
                         metavar='smb folder for transfer and execute funciontality',
@@ -765,10 +773,10 @@ def main() -> None: #main function with argparse
                         default='root',
                         help="Enter folder name [Default: root]")
     parser.add_argument('-i',
-                        metavar='local ip',
+                        required=True,
+                        metavar='interface to listen',
                         type=str,
-                        default=lip,
-                        help="Enter your local IP [Default: "+lip+"]")
+                        help="Enter the interface to listen on")
     parser.add_argument('-p',
                         metavar='port',
                         type=int,
@@ -798,6 +806,14 @@ def main() -> None: #main function with argparse
                         help='If port are being used it kill the process to force the exexcution.')
     args = parser.parse_args()
 
+    dict_int = get_interface()
+
+    if not args.i in dict_int:
+        print(Fore.YELLOW + "[*] " + Fore.RESET + f"Selected '{args.i}' interface do not exists.")
+        quit()
+    else:
+        HOST = dict_int[args.i]
+
     port_to_check = []
 
     port_to_check.append(args.p)
@@ -820,12 +836,12 @@ def main() -> None: #main function with argparse
             print(Fore.CYAN + "[*] " + Fore.RESET + f"./{args.f} directory already exists.")
     try:
         if (args.http):
-            t1 = threading.Thread(target=webServer, args=(args.wp,), daemon = True)
+            t1 = threading.Thread(target=webServer, args=(HOST, args.wp,), daemon = True)
             t1.start()
         if (args.smb):
-            t2 = threading.Thread(target=smbserver, args=(args.f,args.sp,), daemon = True)
+            t2 = threading.Thread(target=smbserver, args=(HOST, args.f,args.sp,), daemon = True)
             t2.start()
-        server(args.i,args.p,args.wp,args.http,args.smb,args.f)
+        server(HOST,args.p,args.wp,args.http,args.smb,args.f)
     except KeyboardInterrupt:
         quit()
 
