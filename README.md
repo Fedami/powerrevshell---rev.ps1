@@ -12,7 +12,7 @@ To simply install it:
     ```
     git clone https://github.com/Fedami/powerrevshell---rev.ps1
     ```
-3.  Run the following code to install all the requirements
+2.  Run the following code to install all the requirements
     ```
     pip install -r requirements.txt
     ```
