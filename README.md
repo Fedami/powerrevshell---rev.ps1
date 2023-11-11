@@ -87,7 +87,7 @@ amsi-bypass
 
 ### exclude
 
-The exlucde functionality will try to exclude powershell.exe from defender, admin permission are needed.
+The exclude functionality will try to exclude powershell.exe from defender, admin permission are needed.
 
 ```
 exclude
